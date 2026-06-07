@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canterra Capital — Guia de Conteúdo Completo</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--yellow:#FFE600;--black:#080808;--card:#181818;--alt:#222222;--concrete:#6B6B6B;--lt:#B0B0B0;--white:#FFFFFF;--p1:#FFE600;--p2:#4D9FFF;--p3:#B0B0B0;--p4:#D4A017;--p5:#39C96E;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;}
+.app{max-width:1100px;margin:0 auto;padding:2rem;}
+
+/* HEADER */
+header{padding:2rem 0 2.5rem;border-bottom:1px solid rgba(255,230,0,0.1);margin-bottom:2.5rem;}
+.logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;letter-spacing:0.06em;line-height:1;}
+.logo span{color:var(--yellow);display:block;font-size:0.7rem;letter-spacing:0.22em;margin-top:2px;}
+.header-sub{color:var(--concrete);font-size:0.85rem;margin-top:0.4rem;}
+.header-stats{display:flex;gap:2rem;margin-top:1.5rem;flex-wrap:wrap;}
+.hstat{text-align:center;}
+.hstat-n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:var(--yellow);line-height:1;}
+.hstat-l{font-size:0.7rem;color:var(--concrete);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;}
+
+/* NAV TABS */
+.nav-tabs{display:flex;gap:0;border-bottom:1px solid rgba(107,107,107,0.2);margin-bottom:2.5rem;overflow-x:auto;}
+.nav-tab{padding:0.85rem 1.5rem;background:transparent;border:none;color:var(--concrete);cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;white-space:nowrap;}
+.nav-tab:hover{color:var(--lt);}
+.nav-tab.active{color:var(--yellow);border-bottom-color:var(--yellow);}
+
+/* SECTIONS */
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.section{margin-bottom:3.5rem;}
+.section-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.5rem;}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.9rem;text-transform:uppercase;line-height:1;margin-bottom:1.2rem;}
+.section-desc{font-size:0.9rem;color:var(--lt);line-height:1.7;font-weight:300;max-width:640px;margin-bottom:1.5rem;}
+.divider{border:none;border-top:1px solid rgba(107,107,107,0.15);margin:3rem 0;}
+
+/* BUTTONS */
+.copy-btn{background:transparent;border:1px solid rgba(107,107,107,0.3);color:var(--lt);padding:0.4rem 0.9rem;cursor:pointer;font-family:'Barlow',sans-serif;font-size:0.72rem;margin-top:0.8rem;transition:all 0.2s;display:inline-block;}
+.copy-btn:hover{border-color:var(--yellow);color:var(--yellow);}
+.copy-btn.done{border-color:var(--yellow);color:var(--yellow);background:rgba(255,230,0,0.05);}
+
+/* ── POSTS TAB ── */
+.legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.legend-item{display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--lt);}
+.legend-dot{width:10px;height:10px;border-radius:50%;}
+.filters{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.filter-btn{padding:0.45rem 1rem;border:1px solid rgba(107,107,107,0.3);background:transparent;color:var(--lt);cursor:pointer;font-family:'Barlow',sans-serif;font-size:0.78rem;font-weight:500;transition:all 0.2s;white-space:nowrap;}
+.filter-btn:hover{border-color:var(--yellow);color:var(--yellow);}
+.filter-btn.active{background:var(--yellow);color:var(--black);border-color:var(--yellow);font-weight:700;}
+.view-toggle{display:flex;gap:0.5rem;margin-bottom:1.5rem;}
+.view-btn{padding:0.4rem 1rem;border:1px solid rgba(107,107,107,0.3);background:transparent;color:var(--concrete);cursor:pointer;font-family:'Barlow',sans-serif;font-size:0.78rem;transition:all 0.2s;}
+.view-btn.active{background:var(--alt);color:var(--white);border-color:var(--concrete);}
+.posts-list{display:flex;flex-direction:column;gap:1rem;}
+.post-card{background:var(--card);border:1px solid rgba(107,107,107,0.15);display:grid;grid-template-columns:80px 1fr auto;overflow:hidden;transition:border-color 0.2s;}
+.post-card:hover{border-color:rgba(255,230,0,0.2);}
+.post-day-col{background:var(--alt);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem 0.5rem;text-align:center;border-right:1px solid rgba(107,107,107,0.15);}
+.post-day-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;line-height:1;color:var(--yellow);}
+.post-day-name{font-size:0.65rem;color:var(--concrete);text-transform:uppercase;letter-spacing:0.08em;}
+.post-body{padding:1.2rem 1.5rem;}
+.post-top{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.6rem;flex-wrap:wrap;}
+.pillar-tag{font-size:0.65rem;font-weight:700;padding:0.2rem 0.6rem;text-transform:uppercase;letter-spacing:0.1em;}
+.post-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:0.5rem;}
+.post-caption{font-size:0.82rem;color:var(--lt);line-height:1.75;white-space:pre-line;font-weight:300;}
+.post-hashtags{margin-top:0.5rem;font-size:0.75rem;color:var(--concrete);line-height:1.6;}
+.post-copy-col{padding:1rem;display:flex;flex-direction:column;gap:0.5rem;justify-content:flex-start;border-left:1px solid rgba(107,107,107,0.15);}
+.pcopy-btn{background:transparent;border:1px solid rgba(107,107,107,0.3);color:var(--lt);padding:0.5rem 0.8rem;cursor:pointer;font-family:'Barlow',sans-serif;font-size:0.72rem;white-space:nowrap;transition:all 0.2s;}
+.pcopy-btn:hover{border-color:var(--yellow);color:var(--yellow);}
+.pcopy-btn.done{border-color:var(--yellow);color:var(--yellow);background:rgba(255,230,0,0.05);}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:rgba(107,107,107,0.15);border:1px solid rgba(107,107,107,0.15);}
+.cal-header{background:var(--alt);padding:0.6rem;text-align:center;font-size:0.7rem;color:var(--concrete);text-transform:uppercase;letter-spacing:0.1em;}
+.cal-day{background:var(--card);padding:0.7rem;min-height:90px;}
+.cal-day-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;color:var(--concrete);margin-bottom:0.4rem;}
+.cal-pill{font-size:0.65rem;padding:0.2rem 0.4rem;margin-bottom:0.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;}
+
+/* ── INSTAGRAM TAB ── */
+.highlights-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+.highlight-item{display:flex;flex-direction:column;align-items:center;gap:0.5rem;}
+.highlight-cover{width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2.5px solid var(--yellow);background:#0D0D0D;font-size:1.8rem;}
+.highlight-label{font-size:0.7rem;color:var(--lt);text-align:center;max-width:76px;}
+.strat-table{width:100%;border-collapse:collapse;}
+.strat-table th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--concrete);padding:0.8rem 1rem;text-align:left;border-bottom:1px solid rgba(107,107,107,0.2);}
+.strat-table td{padding:1rem;border-bottom:1px solid rgba(107,107,107,0.08);font-size:0.88rem;color:var(--lt);vertical-align:top;line-height:1.6;}
+.strat-table td:first-child{color:var(--white);font-weight:500;}
+.strat-table tr:hover td{background:rgba(255,255,255,0.02);}
+.grid-9{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;width:260px;margin:0 auto 1rem;}
+.grid-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.3rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;text-align:center;padding:0.4rem;}
+.grid-cell span{font-size:1.4rem;}
+.growth-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+.growth-step{background:var(--card);border:1px solid rgba(107,107,107,0.15);padding:1.5rem;position:relative;}
+.growth-step::before{content:attr(data-n);position:absolute;top:1rem;right:1.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3rem;color:rgba(255,230,0,0.06);line-height:1;}
+.growth-step h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.6rem;color:var(--yellow);}
+.growth-step p{font-size:0.85rem;color:var(--lt);line-height:1.7;font-weight:300;}
+.hashtag-set{background:var(--card);border:1px solid rgba(107,107,107,0.2);padding:1.5rem;margin-bottom:1rem;border-left:3px solid var(--yellow);}
+.hashtag-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:0.8rem;color:var(--white);}
+.hashtag-text{font-size:0.82rem;color:var(--concrete);line-height:2;}
+.caption-block{background:var(--card);border:1px solid rgba(107,107,107,0.2);padding:1.5rem;margin-bottom:1rem;}
+.caption-header{display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;flex-wrap:wrap;}
+.tag-pill{display:inline-block;padding:0.15rem 0.6rem;font-size:0.65rem;font-weight:700;letter-spacing:0.08em;}
+.caption-template{font-size:0.85rem;color:var(--lt);line-height:1.8;white-space:pre-line;border-left:2px solid rgba(107,107,107,0.3);padding-left:1rem;}
+.info-box{background:var(--card);border:1px solid rgba(107,107,107,0.2);padding:1.5rem;margin-bottom:1rem;border-left:3px solid var(--yellow);}
+.info-box h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.95rem;text-transform:uppercase;margin-bottom:0.8rem;color:var(--yellow);}
+.info-box ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.info-box ul li{font-size:0.85rem;color:var(--lt);line-height:1.6;padding-left:1.2rem;position:relative;}
+.info-box ul li::before{content:'→';position:absolute;left:0;color:var(--yellow);}
+
+@media(max-width:700px){
+  .post-card{grid-template-columns:60px 1fr;}
+  .post-copy-col{display:none;}
+  .growth-steps{grid-template-columns:1fr;}
+  .nav-tab{padding:0.7rem 1rem;font-size:0.75rem;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header>
+  <div class="logo">CANTERRA <span>CAPITAL</span></div>
+  <div class="header-sub">Guia de Conteúdo Completo — Posts + Instagram</div>
+  <div class="header-stats">
+    <div class="hstat"><div class="hstat-n">30</div><div class="hstat-l">Posts prontos</div></div>
+    <div class="hstat"><div class="hstat-n">5</div><div class="hstat-l">Pilares</div></div>
+    <div class="hstat"><div class="hstat-n">6</div><div class="hstat-l">Destaques</div></div>
+    <div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">Scripts Direct</div></div>
+  </div>
+</header>
+
+<!-- TABS -->
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="switchTab('posts')">📅 Calendário 30 dias</button>
+  <button class="nav-tab" onclick="switchTab('destaques')">⭐ Destaques</button>
+  <button class="nav-tab" onclick="switchTab('stories')">📱 Stories diários</button>
+  <button class="nav-tab" onclick="switchTab('hashtags')">🔖 Hashtags</button>
+  <button class="nav-tab" onclick="switchTab('crescimento')">📈 Crescimento</button>
+  <button class="nav-tab" onclick="switchTab('direct')">💬 Scripts Direct</button>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 1 — CALENDÁRIO 30 DIAS
+════════════════════════════════════════ -->
+<div id="tab-posts" class="tab-panel active">
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#FFE600"></div>Obra em Tempo Real</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4D9FFF"></div>Educação Financeira</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#B0B0B0"></div>Depoimento</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#D4A017"></div>Bastidores</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#39C96E"></div>Indaiatuba em Foco</div>
+  </div>
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterPosts('all',this)">Todos (30)</button>
+    <button class="filter-btn" onclick="filterPosts('1',this)">🟡 Obra em Tempo Real</button>
+    <button class="filter-btn" onclick="filterPosts('2',this)">🔵 Educação Financeira</button>
+    <button class="filter-btn" onclick="filterPosts('3',this)">⚪ Depoimento</button>
+    <button class="filter-btn" onclick="filterPosts('4',this)">🟤 Bastidores</button>
+    <button class="filter-btn" onclick="filterPosts('5',this)">🟢 Indaiatuba em Foco</button>
+  </div>
+  <div class="view-toggle">
+    <button class="view-btn active" onclick="setView('list',this)">Lista</button>
+    <button class="view-btn" onclick="setView('calendar',this)">Calendário</button>
+  </div>
+  <div id="view-list" class="posts-list"></div>
+  <div id="view-calendar" style="display:none"></div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 2 — DESTAQUES
+════════════════════════════════════════ -->
+<div id="tab-destaques" class="tab-panel">
+  <div class="section">
+    <div class="section-tag">01 — Destaques (Highlights)</div>
+    <div class="section-title">Organização dos stories fixos</div>
+    <p class="section-desc">Os destaques são a primeira coisa que um visitante novo vê após a bio. É onde você responde as perguntas mais frequentes antes mesmo de alguém te contatar.</p>
+
+    <div class="highlights-row">
+      <div class="highlight-item"><div class="highlight-cover">🏗️</div><div class="highlight-label">Como funciona</div></div>
+      <div class="highlight-item"><div class="highlight-cover">🏠</div><div class="highlight-label">Obras</div></div>
+      <div class="highlight-item"><div class="highlight-cover">📈</div><div class="highlight-label">Retorno</div></div>
+      <div class="highlight-item"><div class="highlight-cover">💬</div><div class="highlight-label">Investidores</div></div>
+      <div class="highlight-item"><div class="highlight-cover">📍</div><div class="highlight-label">Indaiatuba</div></div>
+      <div class="highlight-item"><div class="highlight-cover">📋</div><div class="highlight-label">Contrato</div></div>
+    </div>
+
+    <table class="strat-table">
+      <thead><tr><th>Destaque</th><th>Conteúdo dos stories</th><th>Objetivo</th></tr></thead>
+      <tbody>
+        <tr><td>🏗️ Como funciona</td><td>3–5 stories explicando o modelo: terreno → obra → retorno. Use texto + ícones simples. Inclua um story com o simulador de retorno.</td><td>Responder a dúvida mais comum antes do contato</td></tr>
+        <tr><td>🏠 Obras</td><td>Fotos e vídeos das obras em andamento e entregues. Do mais recente para o mais antigo. Mostre a evolução do canteiro.</td><td>Prova visual de que a obra é real</td></tr>
+        <tr><td>📈 Retorno</td><td>Tabela comparativa (poupança vs Canterra), simulador em ação, infográfico dos 25%. Um story com "se você tivesse investido R$ X…"</td><td>Convencer quem ainda está em cima do muro</td></tr>
+        <tr><td>💬 Investidores</td><td>Prints de depoimentos, áudios (com permissão), texto com a história de cada investidor. Anonimato respeitado se solicitado.</td><td>Prova social — o gatilho mais poderoso</td></tr>
+        <tr><td>📍 Indaiatuba</td><td>Dados da cidade, fotos dos bairros, mapa das regiões de atuação, crescimento em números.</td><td>Contextualizar por que Indaiatuba é a aposta certa</td></tr>
+        <tr><td>📋 Contrato</td><td>Story mostrando (sem dados pessoais) como é o contrato, o que ele garante, o processo de assinatura.</td><td>Eliminar o medo de quem nunca investiu assim</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">02 — Primeiros 9 posts</div>
+    <div class="section-title">A vitrine do perfil</div>
+    <p class="section-desc">Os primeiros 9 posts formam o cartão de visita do feed. Um visitante novo vê esses 9 antes de decidir seguir. Precisam responder: <em style="color:var(--white)">"Quem é esse perfil e o que me oferece?"</em></p>
+    <div class="grid-9">
+      <div class="grid-cell" style="background:#111;border:1px solid rgba(255,230,0,0.35)"><span>🏗️</span><div style="color:var(--yellow)">APRESENTAÇÃO</div></div>
+      <div class="grid-cell" style="background:rgba(255,230,0,0.08);border:1px solid rgba(255,230,0,0.2)"><span>📊</span><div style="color:var(--lt)">25% VS POUPANÇA</div></div>
+      <div class="grid-cell" style="background:#111;border:1px solid rgba(107,107,107,0.2)"><span>🏠</span><div style="color:var(--lt)">OBRA 1 INÍCIO</div></div>
+      <div class="grid-cell" style="background:rgba(255,230,0,0.06);border:1px solid rgba(255,230,0,0.15)"><span>📍</span><div style="color:var(--lt)">POR QUE INDAIATUBA</div></div>
+      <div class="grid-cell" style="background:#111;border:1px solid rgba(255,230,0,0.35)"><span>⚙️</span><div style="color:var(--yellow)">COMO FUNCIONA</div></div>
+      <div class="grid-cell" style="background:#111;border:1px solid rgba(107,107,107,0.2)"><span>🏗️</span><div style="color:var(--lt)">OBRA 1 AVANÇO</div></div>
+      <div class="grid-cell" style="background:rgba(255,230,0,0.08);border:1px solid rgba(255,230,0,0.2)"><span>💬</span><div style="color:var(--lt)">DEPOIMENTO</div></div>
+      <div class="grid-cell" style="background:#111;border:1px solid rgba(107,107,107,0.2)"><span>📋</span><div style="color:var(--lt)">CONTRATO</div></div>
+      <div class="grid-cell" style="background:rgba(255,230,0,0.06);border:1px solid rgba(255,230,0,0.15)"><span>🏠</span><div style="color:var(--yellow)">OBRA 1 ENTREGA</div></div>
+    </div>
+    <p style="font-size:0.78rem;color:var(--concrete);text-align:center">Grade ideal — conta a história completa de um ciclo logo de cara</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 3 — STORIES DIÁRIOS
+════════════════════════════════════════ -->
+<div id="tab-stories" class="tab-panel">
+  <div class="section">
+    <div class="section-tag">03 — Stories diários</div>
+    <div class="section-title">O que postar a cada dia</div>
+    <p class="section-desc">Stories são o canal de relacionamento diário. Consistência aqui vale mais do que qualidade de produção — câmera na mão, legenda simples, todo dia.</p>
+    <div class="growth-steps">
+      <div class="growth-step" data-n="Seg"><h3>Segunda-feira</h3><p>Story de obra: foto ou vídeo do canteiro com atualização do andamento. Legenda curta. Mostra que tem gente trabalhando de manhã cedo.</p></div>
+      <div class="growth-step" data-n="Ter"><h3>Terça-feira</h3><p>Enquete ou caixa de perguntas: "Você sabe quanto sua poupança rendeu esse ano?" ou "Qual é sua maior dúvida sobre investir em obra?"</p></div>
+      <div class="growth-step" data-n="Qua"><h3>Quarta-feira</h3><p>Educação financeira: um dado rápido, uma comparação, uma curiosidade sobre o mercado imobiliário de Indaiatuba. Máximo 3 slides.</p></div>
+      <div class="growth-step" data-n="Qui"><h3>Quinta-feira</h3><p>Bastidores: reunião, visita ao terreno, negociação com fornecedor. Mostra o trabalho invisível que garante o retorno.</p></div>
+      <div class="growth-step" data-n="Sex"><h3>Sexta-feira</h3><p>CTA direto: "Próximo ciclo abre em X dias. Entra na lista de espera." Story com botão de link para WhatsApp ou formulário.</p></div>
+      <div class="growth-step" data-n="Sáb"><h3>Sábado</h3><p>Conteúdo leve: Indaiatuba em foco, foto do bairro onde a obra fica, curiosidade da cidade. Tom humano, menos comercial.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 4 — HASHTAGS
+════════════════════════════════════════ -->
+<div id="tab-hashtags" class="tab-panel">
+  <div class="section">
+    <div class="section-tag">04 — Sets de hashtags</div>
+    <div class="section-title">Use por tipo de post</div>
+    <p class="section-desc">Use 15–20 hashtags por post. Misture sets do seu pilar com 3–4 hashtags gerais de investimento. Evite repetir exatamente o mesmo conjunto todo post.</p>
+
+    <div class="hashtag-set">
+      <div class="hashtag-title">🟡 Obra em Tempo Real</div>
+      <div class="hashtag-text" id="ht0">#CanterraCapital #ObraEmAndamento #ConstruçãoCivil #Indaiatuba #InvestimentoImobiliário #ObraReal #Canteiro #Construção #MercadoImobiliário #ConstruçãoDeBaixoPadrão #GestãoDeObra #ObraCivil #IndaiatubaSP #Laje #Fundação #Reboco #ObraEntregue #DoTerreno #PatrimônioReal</div>
+      <button class="copy-btn" onclick="copyEl('ht0',this)">Copiar hashtags</button>
+    </div>
+    <div class="hashtag-set">
+      <div class="hashtag-title">🔵 Educação Financeira</div>
+      <div class="hashtag-text" id="ht1">#CanterraCapital #EducaçãoFinanceira #InvestimentoInteligente #25porcento #Rentabilidade #ComparaInvestimento #Poupança #CDB #TesouroDireto #InvestimentoImobiliário #RetornoFinanceiro #LiberdadeFinanceira #InvestirEmImóveis #DinheiroTrabalhando #Indaiatuba #PatrimônioReal #InvestidorIniciante</div>
+      <button class="copy-btn" onclick="copyEl('ht1',this)">Copiar hashtags</button>
+    </div>
+    <div class="hashtag-set">
+      <div class="hashtag-title">⚪ Depoimento de Investidor</div>
+      <div class="hashtag-text" id="ht2">#CanterraCapital #Depoimento #InvestidorSatisfeito #ResultadoReal #25porcento #Indaiatuba #HistóriaReal #InvestimentoImobiliário #CicloCompleto #RetornoReal #ProvaReal #BocaABoca #InvestirComConfiança #PatrimônioReal</div>
+      <button class="copy-btn" onclick="copyEl('ht2',this)">Copiar hashtags</button>
+    </div>
+    <div class="hashtag-set">
+      <div class="hashtag-title">🟤 Bastidores da Gestão</div>
+      <div class="hashtag-text" id="ht3">#CanterraCapital #Bastidores #GestãoDeObra #Transparência #Indaiatuba #AnáliseDeTerreno #Permuta #NegociaçãoInteligente #GestãoImobiliária #ConstruçãoCivil #Empreendedorismo #MercadoImobiliário #ObraComGestão</div>
+      <button class="copy-btn" onclick="copyEl('ht3',this)">Copiar hashtags</button>
+    </div>
+    <div class="hashtag-set">
+      <div class="hashtag-title">🟢 Indaiatuba em Foco</div>
+      <div class="hashtag-text" id="ht4">#CanterraCapital #Indaiatuba #IndaiatubaSP #InteriorDeSãoPaulo #CidadeEmCrescimento #MercadoImobiliárioIndaiatuba #IndaiatubaCrescendo #QualidadeDeVida #InteriorSP #ImóveisIndaiatuba #CrescimentoUrbano #Oportunidade #InvestirEmIndaiatuba</div>
+      <button class="copy-btn" onclick="copyEl('ht4',this)">Copiar hashtags</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 5 — CRESCIMENTO
+════════════════════════════════════════ -->
+<div id="tab-crescimento" class="tab-panel">
+  <div class="section">
+    <div class="section-tag">05 — Crescimento orgânico</div>
+    <div class="section-title">Como crescer sem pagar anúncio</div>
+    <div class="growth-steps" style="margin-bottom:2rem;">
+      <div class="growth-step" data-n="1"><h3>Boca a boca digital</h3><p>Peça para cada investidor atual salvar, curtir e compartilhar pelo menos 1 post por semana. Um investidor satisfeito que compartilha vale mais do que qualquer anúncio.</p></div>
+      <div class="growth-step" data-n="2"><h3>Marcar Indaiatuba</h3><p>Use sempre a localização "Indaiatuba, SP" nos posts e stories. O Instagram mostra seu conteúdo para quem segue ou pesquisa essa localização.</p></div>
+      <div class="growth-step" data-n="3"><h3>Colaborações locais</h3><p>Marque e interaja com perfis locais de Indaiatuba: corretores, construtoras, empresas da cidade. Apareça no radar de quem já tem audiência local.</p></div>
+      <div class="growth-step" data-n="4"><h3>Responder todo comentário</h3><p>Nos primeiros 60 minutos após postar, responda todos os comentários. O algoritmo interpreta isso como engajamento alto e aumenta o alcance.</p></div>
+      <div class="growth-step" data-n="5"><h3>Reels de obra</h3><p>Vídeos de 15–30s do canteiro funcionam muito bem no Reels. Não precisa de edição profissional — câmera na mão, trilha no app, legenda simples.</p></div>
+      <div class="growth-step" data-n="6"><h3>Anúncio quando pronto</h3><p>Com 9+ posts e destaques organizados, invista R$ 300–500/mês em tráfego pago focado em Indaiatuba e região. Campanha de lead com o simulador de retorno.</p></div>
+    </div>
+    <div class="info-box">
+      <h4>Métricas para acompanhar semanalmente</h4>
+      <ul>
+        <li>Alcance dos posts (quantas pessoas viram)</li>
+        <li>Cliques no link da bio (visitantes do site / WhatsApp)</li>
+        <li>Mensagens recebidas pelo Direct</li>
+        <li>Salvamentos nos posts (indica conteúdo de valor)</li>
+        <li>Visualizações dos stories (mede a audiência ativa)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 6 — SCRIPTS DIRECT
+════════════════════════════════════════ -->
+<div id="tab-direct" class="tab-panel">
+  <div class="section">
+    <div class="section-tag">06 — Scripts de resposta no Direct</div>
+    <div class="section-title">O que responder quando alguém manda mensagem</div>
+    <p class="section-desc">Respostas prontas para as 3 perguntas mais comuns. Personalize o nome e o valor antes de enviar.</p>
+
+    <div class="caption-block">
+      <div class="caption-header">
+        <span class="tag-pill" style="background:rgba(255,230,0,0.12);color:var(--yellow)">1ª mensagem — "como funciona"</span>
+      </div>
+      <div class="caption-template" id="sc0">Oi, [NOME]! Obrigado pelo interesse na Canterra Capital. 🟡
+
+O modelo é bem direto:
+
+1️⃣ Você investe um valor (a partir de R$ 20 mil)
+2️⃣ A gente encontra o terreno e gerencia a obra aqui em Indaiatuba
+3️⃣ Em 12 meses você recebe de volta com 25% de retorno
+
+Tudo com contrato individual assinado antes de qualquer movimentação.
+
+Posso te enviar mais detalhes? Qual valor você tava pensando em investir?</div>
+      <button class="copy-btn" onclick="copyEl('sc0',this)">Copiar script</button>
+    </div>
+
+    <div class="caption-block">
+      <div class="caption-header">
+        <span class="tag-pill" style="background:rgba(107,107,107,0.15);color:var(--lt)">Pergunta sobre segurança — "é seguro?"</span>
+      </div>
+      <div class="caption-template" id="sc1">Essa é a pergunta certa pra fazer. 👍
+
+A segurança do modelo está em três coisas:
+
+📋 Contrato individual — tudo documentado antes de começar
+🏗️ Obra real — você pode visitar o canteiro a qualquer momento
+👤 Gestão local — você fala direto com quem tá na obra
+
+Não é fundo de investimento, não tem intermediário. É você, o contrato e a obra.
+
+Posso te mandar o modelo de contrato para você analisar?</div>
+      <button class="copy-btn" onclick="copyEl('sc1',this)">Copiar script</button>
+    </div>
+
+    <div class="caption-block">
+      <div class="caption-header">
+        <span class="tag-pill" style="background:rgba(255,230,0,0.12);color:var(--yellow)">Pergunta sobre valor mínimo</span>
+      </div>
+      <div class="caption-template" id="sc2">O valor mínimo por ciclo é de R$ [VALOR].
+
+Com R$ [VALOR] você recebe de volta R$ [VALOR+25%] em 12 meses — ou seja, R$ [RENDIMENTO] de rendimento.
+
+Cada ciclo tem vagas limitadas porque a obra tem um custo definido. Quando fecha, fecha.
+
+Tem interesse em entrar no próximo ciclo? Posso colocar seu nome na lista de espera agora.</div>
+      <button class="copy-btn" onclick="copyEl('sc2',this)">Copiar script</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .app -->
+
+<script>
+// ── DATA ──
+const COLORS={'1':'#FFE600','2':'#4D9FFF','3':'#B0B0B0','4':'#D4A017','5':'#39C96E'};
+const PILLAR={'1':'Obra em Tempo Real','2':'Educação Financeira','3':'Depoimento','4':'Bastidores','5':'Indaiatuba em Foco'};
+const posts=[
+  {day:1,weekday:'Seg',pillar:'1',title:'Do terreno ao retorno',caption:`Começamos do chão. Literalmente. 🟡\n\nEsse é o terreno que vai virar investimento real para os nossos parceiros em Indaiatuba.\n\nAqui na Canterra Capital a gente não vende promessa. A gente mostra o terreno, a obra, o contrato — e o dinheiro voltando pra você em 12 meses com 25% de retorno.\n\nAcompanha a obra por aqui. 👇\n\n🔗 Simule seu retorno no link da bio.`,hashtags:'#CanterraCapital #Indaiatuba #InvestimentoImobiliário #Construção #RetornoReal #25porcento #ObraEmAndamento'},
+  {day:2,weekday:'Qua',pillar:'1',title:'Fundação sendo armada',caption:`Enquanto você lê isso, a fundação já tá sendo armada. 🏗️\n\nCada barra de ferro que entra aqui representa o retorno de quem confiou na Canterra Capital.\n\nObra real. Gestão real. Resultado real.\n\nQuer saber como funciona? Link na bio.`,hashtags:'#CanterraCapital #ObraEmAndamento #Indaiatuba #InvestimentoReal #ConstruçãoCivil #Fundação'},
+  {day:3,weekday:'Sex',pillar:'2',title:'Poupança vs Canterra Capital',caption:`R$ 50.000 na poupança por 12 meses = R$ 3.100 de rendimento.\n\nR$ 50.000 na Canterra Capital por 12 meses = R$ 12.500 de rendimento.\n\nNão é milagre. É construção de baixo padrão, permuta inteligente e gestão séria em Indaiatuba.\n\nA diferença de R$ 9.400 pode ser uma viagem, uma reforma ou o começo de uma reserva.\n\nSimule no link da bio. 👇`,hashtags:'#CanterraCapital #EducaçãoFinanceira #Investimento #Poupança #25porcento #Indaiatuba #ComparaInvestimento'},
+  {day:4,weekday:'Sáb',pillar:'1',title:'Laje sendo armada',caption:`Laje sendo armada. 💪\n\nEssa é a parte que os investidores adoram ver — quando o dinheiro começa a ganhar forma física.\n\nNão tem nada mais concreto do que concreto.\n\nCanterra Capital. O canteiro do seu patrimônio.`,hashtags:'#CanterraCapital #Laje #ObraEmAndamento #Indaiatuba #Construção #Armação'},
+  {day:5,weekday:'Seg',pillar:'4',title:'Segunda começa de pé no chão',caption:`Segunda começa aqui — de pé no chão, no terreno.\n\nAntes de qualquer obra a gente visita, mede, pesquisa e analisa o potencial do lote. Só então fecha o negócio.\n\nEsse cuidado na escolha é o que garante a margem que sustenta o retorno de 25% dos nossos investidores.\n\nNada de achismo. Só decisão baseada em dado.`,hashtags:'#CanterraCapital #BastidoresDaGestão #Indaiatuba #GestãoDeObra #Terreno #AnáliseDeInvestimento'},
+  {day:6,weekday:'Qua',pillar:'1',title:'Paredes subindo',caption:`Paredes subindo. Patrimônio crescendo. 🏠\n\nAqui não tem abstrato. Você vê a obra acontecer. Você acompanha pelo Instagram. Você cobra se atrasar.\n\nIsso é o que a Canterra Capital entrega: transparência de canteiro.\n\n🔗 Link na bio pra simular seu retorno.`,hashtags:'#CanterraCapital #Construção #ObraReal #Indaiatuba #InvestimentoImobiliário #Transparência'},
+  {day:7,weekday:'Qui',pillar:'5',title:'Por que Indaiatuba?',caption:`Indaiatuba cresceu mais de 40% nos últimos 10 anos. E ainda não parou.\n\nNovos bairros, novos condomínios, demanda por moradia de baixo padrão crescendo todo mês.\n\nÉ por isso que a Canterra Capital opera aqui. A gente conhece o mercado local de perto — e isso é vantagem direta pra quem investe com a gente.\n\nConhecimento local = menor risco. Menor risco = retorno sustentável.`,hashtags:'#CanterraCapital #Indaiatuba #MercadoImobiliário #InvestimentoLocal #CrescimentoUrbano #SP'},
+  {day:8,weekday:'Sáb',pillar:'2',title:'CDB vs Canterra Capital',caption:`CDB 100% CDI: ~10,5% ao ano.\nCanterra Capital: 25% em 12 meses.\n\nNum investimento de R$ 80.000:\n📊 CDB → R$ 8.400 de rendimento\n🟡 Canterra → R$ 20.000 de rendimento\n\nA diferença? R$ 11.600.\n\nIsso dá uma viagem internacional, uma reforma completa ou 3 meses de reserva de emergência.\n\nSimule no link da bio.`,hashtags:'#CanterraCapital #CDB #EducaçãoFinanceira #Investimento #Rendimento #Indaiatuba #Comparativo'},
+  {day:9,weekday:'Seg',pillar:'1',title:'Reboco e acabamento',caption:`Chegou a vez do reboco. A obra tá ganhando cara de casa. 🏡\n\nE quando a casa fica pronta, o retorno de quem investiu aparece no extrato.\n\nCanterra Capital. Do terreno ao seu bolso.\n\nPróximo ciclo abre em breve. Entra na lista de espera no link da bio.`,hashtags:'#CanterraCapital #Reboco #Acabamento #ObraEmAndamento #Indaiatuba #ConstruçãoCivil'},
+  {day:10,weekday:'Qua',pillar:'3',title:'Depoimento — João, Indaiatuba',caption:`"Eu não entendia muito de investimento. Mas quando vi a obra acontecendo e o contrato na minha mão, a confiança veio naturalmente. Em 12 meses recebi tudo de volta com os 25%."\n\n— João R., investidor da Canterra Capital, Indaiatuba.\n\nQuer ser o próximo?\n\n🔗 Link na bio.`,hashtags:'#CanterraCapital #Depoimento #InvestidorSatisfeito #25porcento #Indaiatuba #HistóriaReal'},
+  {day:11,weekday:'Qui',pillar:'4',title:'Reunião com fornecedores',caption:`Nos bastidores de uma boa obra: reunião com fornecedores, negociação de material, controle de cronograma.\n\nIsso é o que faz o custo caber dentro da margem — e o retorno de 25% virar realidade para os investidores.\n\nCanterra Capital. Gestão séria. Resultado visível.`,hashtags:'#CanterraCapital #GestãoDeObra #Bastidores #Construção #Indaiatuba #Fornecedores'},
+  {day:12,weekday:'Sáb',pillar:'1',title:'Obra entregue',caption:`Mais uma entregue. 🏠✅\n\nDo terreno à chave. Do investimento ao retorno.\n\nCada obra finalizada é mais um ciclo completo para os nossos investidores.\n\nO próximo ciclo tá aberto. Quer entrar?\n\n🔗 Link na bio.`,hashtags:'#CanterraCapital #ObraEntregue #Indaiatuba #Construção #InvestimentoImobiliário #CicloCompleto'},
+  {day:13,weekday:'Seg',pillar:'2',title:'Como funciona em 3 passos',caption:`Em 3 passos simples:\n\n1️⃣ Você investe o capital com contrato assinado.\n2️⃣ A Canterra Capital encontra o terreno e gerencia 100% da obra.\n3️⃣ Em 12 meses, você recebe o capital + 25%.\n\nSem fundo de investimento. Sem taxa oculta. Sem complicação.\n\nQuer entender melhor? Manda mensagem.`,hashtags:'#CanterraCapital #ComoFunciona #InvestimentoImobiliário #25porcento #Indaiatuba #PassoAPasso'},
+  {day:14,weekday:'Ter',pillar:'5',title:'Bairros em valorização em Indaiatuba',caption:`Alguns bairros de Indaiatuba valorizaram mais de 30% nos últimos 3 anos.\n\nA Canterra Capital opera justamente nos pontos de maior potencial — onde o terreno ainda tá acessível e a demanda já tá alta.\n\nÉ por isso que a margem existe. É por isso que o retorno chega.\n\nConhecimento de quem mora e opera aqui.`,hashtags:'#CanterraCapital #Indaiatuba #ValorizaçãoImobiliária #MercadoLocal #Bairros #SP'},
+  {day:15,weekday:'Qua',pillar:'1',title:'Novo terreno identificado',caption:`Novo terreno. Novo ciclo. Nova oportunidade. 🟡\n\nEnquanto o mercado ainda não percebeu o potencial desse lote, a Canterra Capital já tá com o projeto na mesa.\n\nEsse é o nosso trabalho: encontrar onde outros não olham.\n\nPróximo ciclo abre em breve. Entra na lista de espera.\n\n🔗 Link na bio.`,hashtags:'#CanterraCapital #NovoTerreno #Oportunidade #Indaiatuba #InvestimentoImobiliário #Ciclo'},
+  {day:16,weekday:'Qui',pillar:'3',title:'Depoimento — Ana e irmã',caption:`"Eu indiquei pra minha irmã depois do primeiro ciclo. A gente já tá no segundo juntos. É o investimento mais simples que já fiz — e o que mais rendeu."\n\n— Ana C., investidora da Canterra Capital, Indaiatuba.\n\nIndicação que faz sentido de verdade.\n\n🔗 Link na bio para entrar no próximo ciclo.`,hashtags:'#CanterraCapital #Indicação #Depoimento #InvestidorSatisfeito #Indaiatuba #SegundoCiclo'},
+  {day:17,weekday:'Sáb',pillar:'4',title:'Assinatura de contrato',caption:`Assinatura de contrato. Um dos momentos favoritos da equipe. ✍️\n\nÉ aqui que a parceria vira oficial. O capital entra, a obra começa, o ciclo abre.\n\nCada contrato é um compromisso. E a Canterra Capital honra todos eles.\n\nTransparência desde o primeiro papel assinado.`,hashtags:'#CanterraCapital #Contrato #Parceria #GestãoDeObra #Indaiatuba #Transparência'},
+  {day:18,weekday:'Seg',pillar:'1',title:'Estrutura pronta',caption:`Estrutura pronta. 💪\n\nDa fundação à laje, tudo dentro do prazo e do orçamento.\n\nEsse é o resultado de escolher bem o terreno, negociar bem o material e gerenciar bem a obra.\n\nCanterra Capital. Construindo patrimônio — o seu e o dos nossos investidores.`,hashtags:'#CanterraCapital #Estrutura #ObraEmAndamento #Indaiatuba #ConstruçãoCivil #Prazo'},
+  {day:19,weekday:'Qua',pillar:'5',title:'Indaiatuba: 250 mil habitantes e crescendo',caption:`Indaiatuba tem mais de 250 mil habitantes e é uma das cidades que mais crescem no interior de São Paulo.\n\nNovas famílias chegando todo mês. Demanda por moradia crescendo. Terrenos ainda acessíveis em bairros periféricos.\n\nÉ nesse mercado que a Canterra Capital opera. E é por isso que o modelo funciona.`,hashtags:'#CanterraCapital #Indaiatuba #Interior #SP #CrescimentoUrbano #MercadoImobiliário #Oportunidade'},
+  {day:20,weekday:'Sex',pillar:'2',title:'Tesouro Direto vs Canterra',caption:`Tesouro Direto: ~11,5% ao ano.\nCanterra Capital: 25% em 12 meses.\n\nNum investimento de R$ 100.000:\n📊 Tesouro Direto → R$ 11.500 de rendimento\n🟡 Canterra Capital → R$ 25.000 de rendimento\n\nA diferença de R$ 13.500 com o mesmo prazo.\n\nSeu dinheiro pode trabalhar mais. A decisão é sua.\n\n🔗 Simule no link da bio.`,hashtags:'#CanterraCapital #TesouroDireto #EducaçãoFinanceira #Investimento #Comparativo #25porcento'},
+  {day:21,weekday:'Sáb',pillar:'1',title:'Piso sendo assentado',caption:`Piso sendo assentado. A casa tá quase pronta. 🏠\n\nE quando ela fica pronta, começa a parte que os investidores mais gostam: receber de volta.\n\nCanterra Capital. O canteiro do seu patrimônio.`,hashtags:'#CanterraCapital #Acabamento #Piso #ObraEmAndamento #Indaiatuba'},
+  {day:22,weekday:'Seg',pillar:'4',title:'Escolha do próximo terreno',caption:`Hoje a equipe foi ver 3 terrenos. Voltamos com 1 na cabeça.\n\nCritérios que pesam na escolha: localização, custo de aquisição, possibilidade de permuta, demanda local, viabilidade do projeto.\n\nNão é feeling. É análise.\n\nEsse é o trabalho que ninguém vê — mas que define se o retorno de 25% vai acontecer ou não.`,hashtags:'#CanterraCapital #Terreno #AnáliseDeInvestimento #GestãoDeObra #Indaiatuba #Bastidores'},
+  {day:23,weekday:'Qua',pillar:'1',title:'Pintura finalizada',caption:`Pintura finalizada. A obra tá praticamente pronta. 🎨\n\nDaqui a pouco a chave vira e o ciclo fecha.\n\nPara quem investiu nessa obra: em breve o retorno chega. 25% sobre o capital. No prazo combinado.\n\nIsso é Canterra Capital.`,hashtags:'#CanterraCapital #Pintura #Acabamento #ObraEmAndamento #Indaiatuba #CicloFechando'},
+  {day:24,weekday:'Qui',pillar:'5',title:'Identificação de oportunidade',caption:`Não chamamos de especulação. Chamamos de identificação de oportunidade.\n\nQuando você entra num terreno que o mercado ainda não precificou corretamente, e transforma ele em moradia de qualidade — todo mundo ganha.\n\nO proprietário do terreno. O investidor. O comprador da casa.\n\nÉ esse triângulo que a Canterra Capital opera. Em Indaiatuba e região.`,hashtags:'#CanterraCapital #Indaiatuba #MercadoImobiliário #Oportunidade #Permuta #InvestimentoInteligente'},
+  {day:25,weekday:'Sáb',pillar:'2',title:'O que é permuta e por que importa',caption:`Permuta é quando o dono do terreno aceita receber uma unidade da obra como pagamento em vez de dinheiro.\n\nPara a Canterra Capital, isso significa: menos desembolso inicial → mais margem disponível → retorno maior para o investidor.\n\nÉ uma das estratégias que sustenta os 25% de rentabilidade em 12 meses.\n\nInvestimento inteligente começa numa boa negociação de terreno.`,hashtags:'#CanterraCapital #Permuta #EducaçãoFinanceira #Construção #Indaiatuba #Estratégia'},
+  {day:26,weekday:'Seg',pillar:'3',title:'Depoimento — Carlos, segundo ciclo',caption:`"No primeiro ciclo eu investi com um pé atrás. No segundo entrei com tudo. Porque vi a obra, vi o contrato, recebi o retorno no prazo. Simples assim."\n\n— Carlos M., investidor da Canterra Capital, Indaiatuba.\n\nCiclo 3 abrindo em breve. Quer entrar?\n\n🔗 Link na bio.`,hashtags:'#CanterraCapital #Depoimento #SegundoCiclo #InvestidorSatisfeito #Indaiatuba #25porcento'},
+  {day:27,weekday:'Qua',pillar:'1',title:'Chave entregue',caption:`Chave entregue. Ciclo encerrado. 🔑\n\nEssa casa que você acompanhou sendo construída aqui no Instagram agora tem dono.\n\nE os investidores que apostaram nessa obra? Recebem o retorno de 25% nos próximos dias.\n\nIsso é Canterra Capital. Do chão à entrega.`,hashtags:'#CanterraCapital #ChaveEntregue #ObraFinalizada #Indaiatuba #InvestimentoImobiliário #Retorno'},
+  {day:28,weekday:'Qui',pillar:'4',title:'Relatório ao investidor',caption:`Todo investidor da Canterra Capital recebe relatórios do andamento da obra.\n\nFotos, evolução, cronograma, previsão de entrega.\n\nNão tem surpresa. Não tem sumiço. Não tem desculpa.\n\nTransparência é o nosso modelo de negócio — não é opcional.`,hashtags:'#CanterraCapital #Relatório #Transparência #GestãoDeObra #Investidor #Indaiatuba'},
+  {day:29,weekday:'Sex',pillar:'5',title:'Indaiatuba x interior SP',caption:`Você sabia que o metro quadrado de terreno em Indaiatuba ainda é até 3x mais barato do que em cidades como Campinas e Sorocaba?\n\nIsso cria oportunidade real de construção com margem.\n\nÉ exatamente nesse diferencial que a Canterra Capital opera — e onde o retorno de 25% para os investidores se sustenta.\n\nConhecimento local = vantagem competitiva.`,hashtags:'#CanterraCapital #Indaiatuba #Campinas #InteriorSP #MercadoImobiliário #Oportunidade'},
+  {day:30,weekday:'Sáb',pillar:'1',title:'Próximo ciclo — vagas limitadas',caption:`Próximo ciclo da Canterra Capital está aberto. 🟡\n\nO que você recebe:\n✅ Contrato individual assinado\n✅ Acompanhamento da obra em tempo real\n✅ 25% de retorno sobre o capital investido\n✅ Prazo de 12 meses\n✅ Atendimento direto com a gestão\n\nVagas limitadas por ciclo.\n\nEntre na lista de espera agora. Link na bio. 👇`,hashtags:'#CanterraCapital #NovoCiclo #InvestimentoImobiliário #25porcento #Indaiatuba #VagasLimitadas #OCanteiroDoSeuPatrimônio'},
+];
+
+let currentFilter='all';
+let currentView='list';
+
+function switchTab(name){
+  document.querySelectorAll('.nav-tab').forEach((t,i)=>{
+    const names=['posts','destaques','stories','hashtags','crescimento','direct'];
+    t.classList.toggle('active', names[i]===name);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+}
+
+function filterPosts(p, btn){
+  currentFilter=p;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+  if(currentView==='calendar') renderCalendar();
+}
+
+function setView(v, btn){
+  currentView=v;
+  document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('view-list').style.display = v==='list' ? 'flex' : 'none';
+  document.getElementById('view-calendar').style.display = v==='calendar' ? 'block' : 'none';
+  if(v==='calendar') renderCalendar();
+}
+
+function getFiltered(){ return currentFilter==='all'?posts:posts.filter(p=>p.pillar===currentFilter); }
+
+function copyPost(idx){
+  const p=posts[idx];
+  navigator.clipboard.writeText(p.title+'\n\n'+p.caption+'\n\n'+p.hashtags).then(()=>{
+    const btn=document.querySelector('[data-copy="'+idx+'"]');
+    if(btn){btn.textContent='✓ Copiado!';btn.classList.add('done');setTimeout(()=>{btn.textContent='Copiar legenda';btn.classList.remove('done');},2000);}
+  });
+}
+
+function copyEl(id, btn){
+  const el=document.getElementById(id);
+  navigator.clipboard.writeText(el.textContent.trim()).then(()=>{
+    const orig=btn.textContent;
+    btn.textContent='✓ Copiado!';btn.classList.add('done');
+    setTimeout(()=>{btn.textContent=orig;btn.classList.remove('done');},2000);
+  });
+}
+
+function renderList(){
+  const container=document.getElementById('view-list');
+  const filtered=getFiltered();
+  if(!filtered.length){container.innerHTML='<p style="color:var(--concrete);padding:2rem">Nenhum post neste filtro.</p>';return;}
+  container.innerHTML=filtered.map(p=>{
+    const idx=posts.indexOf(p);
+    const color=COLORS[p.pillar];
+    return `<div class="post-card">
+      <div class="post-day-col">
+        <div class="post-day-num">${p.day}</div>
+        <div class="post-day-name">${p.weekday}</div>
+      </div>
+      <div class="post-body">
+        <div class="post-top"><span class="pillar-tag" style="background:${color}22;color:${color}">${PILLAR[p.pillar]}</span></div>
+        <div class="post-title">${p.title}</div>
+        <div class="post-caption">${p.caption}</div>
+        <div class="post-hashtags">${p.hashtags}</div>
+      </div>
+      <div class="post-copy-col">
+        <button class="pcopy-btn" data-copy="${idx}" onclick="copyPost(${idx})">Copiar legenda</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderCalendar(){
+  const container=document.getElementById('view-calendar');
+  const days=['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+  let html='<div class="calendar-grid">';
+  days.forEach(d=>html+=`<div class="cal-header">${d}</div>`);
+  for(let i=0;i<30;i++){
+    const dp=posts.filter(p=>p.day===i+1);
+    const filtered=currentFilter==='all'?dp:dp.filter(p=>p.pillar===currentFilter);
+    html+=`<div class="cal-day"><div class="cal-day-num">Dia ${i+1}<br><span style="font-weight:400;font-size:0.6rem;color:var(--concrete)">${dp[0]?.weekday||''}</span></div>`;
+    filtered.forEach(p=>{const c=COLORS[p.pillar];html+=`<div class="cal-pill" style="background:${c}22;color:${c}">${p.title}</div>`;});
+    html+='</div>';
+  }
+  html+='</div>';
+  container.innerHTML=html;
+}
+
+renderList();
+</script>
+</body>
+</html>
